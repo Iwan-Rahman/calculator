@@ -18,7 +18,7 @@ body {
 }
 
 .calc {
-  min-width: 400px;
+  width: 400px;
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -67,10 +67,10 @@ body {
   flex: 2.04115;
 } 
 
-.calc-btn.operation {
+.calc-btn.operation, #equal {
   background-color:coral;
 }
 
-.calc-btn.digit {
+.calc-btn.digit, #decimal{
   background-color: cornflowerblue;
 }
