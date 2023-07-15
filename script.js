@@ -50,7 +50,7 @@ function setOperation(e){
   }else{
     operandTwo = display.textContent
     display.textContent = operate(+operandOne,+operandTwo,operator);
-    //checkOverflow();
+    checkOverflow();
     operandOne = display.textContent;
     operator = e.target.textContent;
   }
@@ -60,7 +60,7 @@ function setOperation(e){
 function checkOverflow(){
   let number = +display.textContent;
   if(display.textContent.length >= 10){
-    if(display.textContent.indexOf(".") != -1 && !(display.textContent.indexOf(".") > 10)){
+    if(display.textContent.indexOf(".") != -1 && !(display.textContent.indexOf(".") > 10) && display.textContent.indexOf("e") == -1){
       let lengthBeforeDecimal = display.textContent.indexOf(".");
       let moves = (10 - lengthBeforeDecimal);
       number = multiply(number,10**moves);
@@ -93,7 +93,7 @@ equal.addEventListener("click",() => {
   if(operator != null){
     operandTwo = display.textContent;
     display.textContent = operate(+operandOne,+operandTwo,operator);
-    //checkOverflow();
+    checkOverflow();
   }
   operandOne = null;
   operandTwo = null;
