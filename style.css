@@ -57,6 +57,7 @@ body {
 }
 
 .calc-btn {
+  transition: 0.1s;
   border-radius: 5%;
   background-color:teal;
   flex: 1;
@@ -68,10 +69,14 @@ body {
   flex: 2.04115;
 } 
 
-.calc-btn.operation, #equal {
+.calc-btn.operation, .calc-btn.equal {
   background-color:coral;
 }
 
-.calc-btn.digit, #decimal{
+.calc-btn.digit, .calc-btn.decimal{
   background-color: cornflowerblue;
+}
+
+#select {
+  background-color:snow;
 }

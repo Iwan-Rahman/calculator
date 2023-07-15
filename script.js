@@ -24,11 +24,11 @@ function operate(a,b,op){
 let numbers = document.querySelectorAll(".digit");
 let operations = document.querySelectorAll(".operation");
 let display = document.querySelector(".calc-display");
-let equal = document.querySelector("#equal");
-let clear = document.querySelector("#ac");
-let percent = document.querySelector("#percent");
-let sign = document.querySelector("#sign");
-let decimal = document.querySelector("#decimal");
+let equal = document.querySelector(".calc-btn.equal");
+let clear = document.querySelector(".calc-btn.ac");
+let percent = document.querySelector(".calc-btn.percent");
+let sign = document.querySelector(".calc-btn.sign");
+let decimal = document.querySelector(".calc-btn.decimal");
 
 //Calculator Control Functions
 function setCalcDisplay(e){
@@ -82,11 +82,18 @@ function checkOverflow(){
 
 //Event Handlers
 for(let number of numbers){
-  number.addEventListener("click",setCalcDisplay);
+  number.addEventListener("click",(e) => {
+    setCalcDisplay(e);
+    e.target.setAttribute("id","select");
+  });
 }
 
 for(let operator of operations){
-  operator.addEventListener("click",setOperation);
+  operator.addEventListener("click",(e) => {
+    setOperation(e);
+    clearAllOperationSelect();
+    e.target.setAttribute("id","select");
+  });
 }
 
 equal.addEventListener("click",() => {
@@ -99,6 +106,9 @@ equal.addEventListener("click",() => {
   operandTwo = null;
   operator = null;
   resetDisplay = true;
+
+  clearAllOperationSelect();
+  equal.setAttribute("id","select");
 })
 
 clear.addEventListener("click",() => {
@@ -107,14 +117,18 @@ clear.addEventListener("click",() => {
   operator = null;
   resetDisplay = true;
   display.textContent = "0";
+  clearAllOperationSelect();
+  clear.setAttribute("id","select");
 })
 
 percent.addEventListener("click", () => {
   display.textContent = divide(+display.textContent,100);
+  percent.setAttribute("id","select");;
 })
 
 sign.addEventListener("click", () => {
   display.textContent = multiply(+display.textContent,-1);
+  sign.setAttribute("id","select");;
 })
 
 decimal.addEventListener("click",()=>{
@@ -122,4 +136,20 @@ decimal.addEventListener("click",()=>{
     display.textContent += ".";
     resetDisplay = false;
   }
+  decimal.setAttribute("id","select");;
 })
+
+//Calculator Style Functions and Event Listeners
+buttons = document.querySelectorAll(".calc-btn");
+
+for(let i = 0; i < buttons.length; i++){
+  if(!(buttons[i].classList.contains("operation"))){
+    buttons[i].addEventListener("transitionend", () => {
+      buttons[i].removeAttribute("id");
+    })
+  }
+}
+
+function clearAllOperationSelect(){
+  for(op of operations) op.removeAttribute("id");
+}
