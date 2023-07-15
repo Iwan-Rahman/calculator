@@ -28,10 +28,14 @@ let equal = document.querySelector("#equal");
 let clear = document.querySelector("#ac");
 let percent = document.querySelector("#percent");
 let sign = document.querySelector("#sign");
+let decimal = document.querySelector("#decimal");
 
 //Calculator Control Functions
 function setCalcDisplay(e){
-if(resetDisplay){
+if(display.textContent == "0"){
+  display.textContent = e.target.textContent;
+  resetDisplay = false
+}else if(resetDisplay){
     display.textContent = e.target.textContent;
     resetDisplay = false;
   }else if(display.textContent.length < 10){
@@ -86,4 +90,10 @@ percent.addEventListener("click", () => {
 
 sign.addEventListener("click", () => {
   display.textContent = multiply(+display.textContent,-1);
+})
+
+decimal.addEventListener("click",()=>{
+  if((display.textContent).indexOf(".") == -1){
+    display.textContent += ".";
+  }
 })
