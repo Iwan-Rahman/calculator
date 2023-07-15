@@ -56,6 +56,27 @@ function setOperation(e){
   resetDisplay = true;
 }
 
+function checkOverflow(){
+  let number = +display.textContent;
+  if(display.textContent.length >= 10){
+    if(display.textContent.indexOf(".") != -1){
+      let lengthBeforeDecimal = display.textContent.indexOf(".");
+      let moves = (10 - lengthBeforeDecimal);
+      number = multiply(number,10**moves);
+      number = Math.round(number);
+      if(toString(number).length > 10){
+        number = divide(number,10**moves);
+      }
+    }else{
+      let moves = (display.textContent.length - 10);
+      number = divide(number,10**moves);
+      number = Math.round(number);
+    }
+
+    display.textContent = number;
+  }
+}
+
 //Event Handlers
 for(let number of numbers){
   number.addEventListener("click",setCalcDisplay);
@@ -95,5 +116,6 @@ sign.addEventListener("click", () => {
 decimal.addEventListener("click",()=>{
   if((display.textContent).indexOf(".") == -1){
     display.textContent += ".";
+    resetDisplay = false;
   }
 })
