@@ -13,6 +13,8 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
+  background-color:azure;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .calc {
@@ -28,7 +30,7 @@ body {
 
 .calc-display {
   flex: 1.3;
-  background-color: aliceblue;
+  background-color: azure;
   border-radius: 3%;
   display: flex;
   align-items: flex-end;
@@ -55,11 +57,20 @@ body {
 
 .calc-btn {
   border-radius: 5%;
-  background-color: aliceblue;
+  background-color:teal;
   flex: 1;
   display: flex;;
+  font-size: 1.5em;
 }
 
 .calc-btn.zero {
   flex: 2.04115;
 } 
+
+.calc-btn.operation {
+  background-color:coral;
+}
+
+.calc-btn.digit {
+  background-color: cornflowerblue;
+}
