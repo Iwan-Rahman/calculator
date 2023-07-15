@@ -2,7 +2,7 @@
 let operandOne = null;
 let operandTwo = null;
 let operator = null;
-let resetDisplay = false;
+let resetDisplay = true;
 
 //Basic Operation Functions
 let add = (a,b) => a+b;
@@ -25,12 +25,13 @@ let numbers = document.querySelectorAll(".digit");
 let operations = document.querySelectorAll(".operation");
 let display = document.querySelector(".calc-display");
 let equal = document.querySelector("#equal");
+let clear = document.querySelector("#ac");
+let percent = document.querySelector("#percent");
+let sign = document.querySelector("#sign");
 
 //Calculator Control Functions
 function setCalcDisplay(e){
-  if(operandOne == null){
-    display.textContent = e.target.textContent;
-  }else if(resetDisplay){
+if(resetDisplay){
     display.textContent = e.target.textContent;
     resetDisplay = false;
   }else if(display.textContent.length < 10){
@@ -68,4 +69,21 @@ equal.addEventListener("click",() => {
   operandOne = null;
   operandTwo = null;
   operator = null;
+  resetDisplay = true;
+})
+
+clear.addEventListener("click",() => {
+  operandOne = null;
+  operandTwo = null;
+  operator = null;
+  resetDisplay = true;
+  display.textContent = "0";
+})
+
+percent.addEventListener("click", () => {
+  display.textContent = divide(+display.textContent,100);
+})
+
+sign.addEventListener("click", () => {
+  display.textContent = multiply(+display.textContent,-1);
 })
