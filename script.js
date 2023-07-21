@@ -125,6 +125,7 @@ clear.addEventListener("click",() => {
 
 percent.addEventListener("click", () => {
   display.textContent = divide(+display.textContent,100);
+  checkOverflow();
   percent.setAttribute("id","select");;
 })
 
