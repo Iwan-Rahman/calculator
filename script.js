@@ -32,13 +32,13 @@ let decimal = document.querySelector(".calc-btn.decimal");
 
 //Calculator Control Functions
 function setCalcDisplay(e){
-if(display.textContent == "0"){
+if(display.textContent == "0" || resetDisplay){
   display.textContent = e.target.textContent;
+  if(operandOne != null){
+    clearAllOperationSelect();
+  }
   resetDisplay = false
-}else if(resetDisplay){
-    display.textContent = e.target.textContent;
-    resetDisplay = false;
-  }else if(display.textContent.length < 10){
+}else if(display.textContent.length < 10){
     display.textContent += e.target.textContent;  
   }
 }
@@ -47,8 +47,10 @@ function setOperation(e){
   if(operandOne == null){
     operandOne = display.textContent;
     operator = e.target.textContent;
-  }else{
-    operandTwo = display.textContent
+  }else if(resetDisplay == true){
+    operator = e.target.textContent;
+  }else {
+    operandTwo = display.textContent;
     display.textContent = operate(+operandOne,+operandTwo,operator);
     checkOverflow();
     operandOne = display.textContent;
